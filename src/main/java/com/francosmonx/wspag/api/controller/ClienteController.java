@@ -14,7 +14,7 @@ public class ClienteController {
 	public List<Cliente> clientes() {
 		var cli = new Cliente();
 
-		cli.setNome("Juliano");
+		cli.setNome("Juliano Henrique");
 		cli.setId(1);
 		cli.setEmail("juliano.dev@hotmail.com");
 		cli.setTelefone("000900000000");
