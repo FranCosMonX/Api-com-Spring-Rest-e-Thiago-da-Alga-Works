@@ -1,11 +1,11 @@
 package com.francosmonx.wspag.domain.model;
 
-//criação de modelos de domíno da aplicação
 public class Cliente {
 	private long id;
 	private String email;
 	private String nome;
 	private String telefone;
+	
 	public long getId() {
 		return id;
 	}
