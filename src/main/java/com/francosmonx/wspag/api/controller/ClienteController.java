@@ -1,7 +1,9 @@
 package com.francosmonx.wspag.api.controller;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +26,12 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/clientes/{clienteId}")
-	public Cliente buscar(@PathVariable Long clienteId) {
-		return clienteRepository.findById(clienteId).orElse(null);
+	public ResponseEntity<Cliente> buscar(@PathVariable Long clienteId) {
+		Optional<Cliente> cliente = clienteRepository.findById(clienteId);
+		
+		if(cliente.isPresent()) {
+			return ResponseEntity.ok(cliente.get());
+		}
+		return ResponseEntity.notFound().build();
 	}
 }
