@@ -9,7 +9,10 @@ import com.francosmonx.wspag.domain.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
+	
+	List<Cliente> findByNome(String nome);
+	
 	//criar um metodo de modo a fazer o Spring entregar uma implementação
 	//mas tem que obedecer à sintaxe
-	List<Cliente> findByNome(String nome);
+	List<Cliente> findByNomeContaining(String nome);
 }
