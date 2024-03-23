@@ -12,8 +12,11 @@ import com.francosmonx.wspag.domain.repository.ClienteRepository;
 @RestController
 public class ClienteController {
 	
-	@Autowired //o Spring fornece uma instancia
 	private ClienteRepository clienteRepository;
+	
+	public ClienteController(ClienteRepository repositorio) {
+		this.clienteRepository = repositorio;
+	}
 	
 	@GetMapping("/clientes")
 	public List<Cliente> clientes() {
