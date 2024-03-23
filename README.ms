@@ -17,3 +17,5 @@ tem que respeitar a sintaxe: V<001>__cria-tabela-cliente.sql >> o numero pode co
 e a extensão do arquivo deve ser "sql".
 
 - jakarta: (link)[https://jakarta.ee/learn/docs/jakartaee-tutorial/current/index.html]
+
+- Spring Data JPA: implementação de repositorios (classes) do jakarta;

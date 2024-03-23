@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	@Column //quando não é um ID, ele ira entender como column
 	private String email;
