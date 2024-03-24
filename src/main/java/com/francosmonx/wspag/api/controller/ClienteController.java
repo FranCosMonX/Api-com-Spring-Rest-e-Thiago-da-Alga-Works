@@ -71,7 +71,7 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clienteRepository.deleteById(clienteId);
+		cadastroClienteService.excluir(clienteId);
 		return ResponseEntity.noContent().build();
 	}
 }

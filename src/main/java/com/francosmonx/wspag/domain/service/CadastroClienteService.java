@@ -26,4 +26,9 @@ public class CadastroClienteService {
 	public Cliente salvar(Cliente cliente) {//essemetodo deve ser executado dentro de uma transação
 		return clienteRepository.save(cliente);
 	}
+	
+	@Transactional
+	public void excluir(Long id) {
+		clienteRepository.deleteById(id);
+	}
 }
