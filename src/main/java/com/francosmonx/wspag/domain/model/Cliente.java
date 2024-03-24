@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Cliente {
@@ -14,8 +15,10 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column //quando não é um ID, ele ira entender como column
+	@NotBlank
+	@Column
 	private String email;
+	@NotBlank
 	@Column
 	private String nome;
 	

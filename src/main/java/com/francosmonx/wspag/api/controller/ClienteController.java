@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.francosmonx.wspag.domain.model.Cliente;
 import com.francosmonx.wspag.domain.repository.ClienteRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
@@ -45,7 +47,7 @@ public class ClienteController {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
-	public Cliente adicionar(@RequestBody Cliente cliente) {
+	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
 		return clienteRepository.save(cliente);
 	}
 	
