@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.francosmonx.wspag.domain.model.Cliente;
 import com.francosmonx.wspag.domain.repository.ClienteRepository;
+import com.francosmonx.wspag.domain.service.CadastroClienteService;
 
 import jakarta.validation.Valid;
 
@@ -24,10 +25,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/clientes")
 public class ClienteController {
 	
-	private ClienteRepository clienteRepository;
+	private final CadastroClienteService cadastroClienteService;
 	
-	public ClienteController(ClienteRepository repositorio) {
+	private final ClienteRepository clienteRepository;
+	
+	public ClienteController(ClienteRepository repositorio, CadastroClienteService cadastroCliente) {
 		this.clienteRepository = repositorio;
+		this.cadastroClienteService = cadastroCliente;
 	}
 	
 	@GetMapping
@@ -48,7 +52,7 @@ public class ClienteController {
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+		return cadastroClienteService.salvar(cliente);
 	}
 	
 	@PutMapping("/{clienteId}")
@@ -58,7 +62,7 @@ public class ClienteController {
 		}
 		
 		clienteAtualizado.setId(clienteId);
-		return ResponseEntity.ok(clienteRepository.save(clienteAtualizado));
+		return ResponseEntity.ok(cadastroClienteService.salvar(clienteAtualizado));
 	}
 	
 	@DeleteMapping("/{clienteId}")

@@ -18,12 +18,12 @@ public class Cliente {
 	private Long id;
 	
 	@NotBlank
+	@Email
 	@Size(max = 60)
 	@Column
 	private String email;
 	@NotBlank
 	@Size(max = 255)
-	@Email
 	@Column
 	private String nome;
 	
