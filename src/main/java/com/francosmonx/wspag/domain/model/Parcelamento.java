@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.francosmonx.wspag.domain.validation.ValidationGroups;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,8 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.groups.ConvertGroup;
+import jakarta.validation.groups.Default;
 
 @Entity
 public class Parcelamento {
@@ -22,7 +26,8 @@ public class Parcelamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Valid //fazendo a validação do objeto para evitar que o id venha null
+	@Valid
+	@ConvertGroup(from = Default.class, to = ValidationGroups.clienteID.class) //informando que só quero que valide o que esta escrito como ValidationGroups.clienteID
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")

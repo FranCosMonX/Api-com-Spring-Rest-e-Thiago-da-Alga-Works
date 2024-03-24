@@ -2,7 +2,7 @@ package com.francosmonx.wspag.domain.model;
 
 import java.util.Objects;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+import com.francosmonx.wspag.domain.validation.ValidationGroups;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,8 +16,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 public class Cliente {
-	//todas as validations tem @NotNull(groups = Default.class) por padrao
-	@NotNull
+	@NotNull(groups = ValidationGroups.clienteID.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.francosmonx.wspag.domain.exception.NegocioException;
 import com.francosmonx.wspag.domain.model.Cliente;
 import com.francosmonx.wspag.domain.model.Parcelamento;
-import com.francosmonx.wspag.domain.repository.ClienteRepository;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
 
 @Service
