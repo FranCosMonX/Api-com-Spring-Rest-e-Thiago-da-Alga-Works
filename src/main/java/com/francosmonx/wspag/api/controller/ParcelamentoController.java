@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.francosmonx.wspag.domain.exception.NegocioException;
 import com.francosmonx.wspag.domain.model.Parcelamento;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
 import com.francosmonx.wspag.domain.service.ParcelamentoService;
@@ -43,5 +45,10 @@ public class ParcelamentoController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public Parcelamento cadastrar(@RequestBody Parcelamento parcelamento) {
 		return parcelamentoService.cadastrar(parcelamento);
+	}
+	
+	@ExceptionHandler(NegocioException.class)
+	public ResponseEntity<String> capturar(NegocioException e){
+		return ResponseEntity.badRequest().body(e.getMessage());
 	}
 }
