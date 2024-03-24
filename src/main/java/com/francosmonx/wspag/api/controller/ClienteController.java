@@ -40,7 +40,11 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public Cliente adicionar(@RequestBody Cliente cliente) {//transforma o JSON (veio no corpo da requisição) em Objeto da classe java
-		return clienteRepository.save(cliente);//retorna o cliente salvo
+	public ResponseEntity<Cliente> adicionar(@RequestBody Cliente cliente) {
+		try {
+			return ResponseEntity.ok(clienteRepository.save(cliente));
+		}catch(Exception e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
