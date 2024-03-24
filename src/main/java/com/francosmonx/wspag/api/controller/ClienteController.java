@@ -66,6 +66,6 @@ public class ClienteController {
 		}
 		
 		clienteRepository.deleteById(clienteId);
-		return ResponseEntity.noContent().build();//melhor maneira de retornar o codigo HTTP de uma ação, sem devolver nada
+		return ResponseEntity.noContent().build();
 	}
 }
