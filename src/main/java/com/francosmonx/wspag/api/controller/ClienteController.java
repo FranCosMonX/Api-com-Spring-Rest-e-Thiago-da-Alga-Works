@@ -55,7 +55,17 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clienteAtualizado.setId(clienteId);//para evitar o problema mencionado logo abaixo
-		return ResponseEntity.ok(clienteRepository.save(clienteAtualizado));//só isto faria com que fosse sempre adicionado. pois essa funcionalidade add quando não tem
+		clienteAtualizado.setId(clienteId);
+		return ResponseEntity.ok(clienteRepository.save(clienteAtualizado));
+	}
+	
+	@DeleteMapping("/{clienteId}")
+	public ResponseEntity<Void> excluir(@PathVariable Long clienteId){
+		if(!clienteRepository.existsById(clienteId)) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		clienteRepository.deleteById(clienteId);
+		return ResponseEntity.noContent().build();//melhor maneira de retornar o codigo HTTP de uma ação, sem devolver nada
 	}
 }
