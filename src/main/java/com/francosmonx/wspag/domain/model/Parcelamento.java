@@ -10,6 +10,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Parcelamento {
@@ -17,13 +21,21 @@ public class Parcelamento {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	@ManyToOne //relacionamento
 	@JoinColumn(name = "cliente_id") //
 	private Cliente cliente;
 	
+	@NotBlank
 	private String descricao;
+	@NotNull
+	@Positive
 	private BigDecimal valor_total;
+	@NotNull
+	@Positive
+	@Max(value = 12)
 	private Integer quantidade_parcelas;
+	
 	private LocalDateTime dataCriacao;
 	
 	

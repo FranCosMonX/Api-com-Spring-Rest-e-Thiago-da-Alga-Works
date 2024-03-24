@@ -18,6 +18,8 @@ import com.francosmonx.wspag.domain.model.Parcelamento;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
 import com.francosmonx.wspag.domain.service.ParcelamentoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/parcelamentos")
 public class ParcelamentoController {
@@ -43,7 +45,7 @@ public class ParcelamentoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Parcelamento cadastrar(@RequestBody Parcelamento parcelamento) {
+	public Parcelamento cadastrar(@Valid @RequestBody Parcelamento parcelamento) {
 		return parcelamentoService.cadastrar(parcelamento);
 	}
 	
