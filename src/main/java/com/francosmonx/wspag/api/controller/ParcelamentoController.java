@@ -35,8 +35,8 @@ public class ParcelamentoController {
 	}
 	
 	@GetMapping
-	public List<Parcelamento> buscar(){
-		return parcelamentoRepositorio.findAll();
+	public List<ParcelamentoModel> buscar(){
+		return parcelamentoAssembler.toCollectionModel(parcelamentoRepositorio.findAll());
 	}
 	
 	@GetMapping("/{parcelamentoId}")

@@ -1,5 +1,7 @@
 package com.francosmonx.wspag.api.assembler;
 
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
@@ -19,5 +21,11 @@ public class ParcelamentoAssembler {
 	
 	public ParcelamentoModel toModel(Parcelamento parcelamento) {
 		return modelMapper.map(parcelamento, ParcelamentoModel.class);
+	}
+	
+	public List<ParcelamentoModel> toCollectionModel(List<Parcelamento> parcelamentos){
+		return parcelamentos.stream()
+				.map(p -> toModel(p))
+				.toList();
 	}
 }
