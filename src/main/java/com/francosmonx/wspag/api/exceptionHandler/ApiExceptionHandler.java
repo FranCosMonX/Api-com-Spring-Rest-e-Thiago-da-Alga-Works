@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -55,4 +56,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		return problemDetail;
 	}
 	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ProblemDetail handleDataIntegrityViolation(DataIntegrityViolationException e) {
+		ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.CONFLICT);//nao excluir algo porque esta sendo usado em outro local
+		problemDetail.setTitle("Recurso está em uso");
+		problemDetail.setType(URI.create("https://francosmonx.com/erros/recurso-em-uso"));
+		
+		return problemDetail;
+	}
 }
