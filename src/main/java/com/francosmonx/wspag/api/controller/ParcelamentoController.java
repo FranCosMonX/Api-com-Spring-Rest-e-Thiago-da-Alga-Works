@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.francosmonx.wspag.api.assembler.ParcelamentoAssembler;
 import com.francosmonx.wspag.api.model.ParcelamentoModel;
 import com.francosmonx.wspag.domain.model.Parcelamento;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
@@ -25,12 +26,12 @@ import jakarta.validation.Valid;
 public class ParcelamentoController {
 	private final ParcelamentoRepository parcelamentoRepositorio;
 	private final ParcelamentoService parcelamentoService;
-	private final ModelMapper modelMapper;
+	private final ParcelamentoAssembler parcelamentoAssembler;
 	
-	public ParcelamentoController(ParcelamentoRepository pR, ParcelamentoService pS, ModelMapper modelMapper) {
+	public ParcelamentoController(ParcelamentoRepository pR, ParcelamentoService pS, ParcelamentoAssembler parcelamentoAssembler) {
 		this.parcelamentoRepositorio = pR;
 		this.parcelamentoService = pS;
-		this.modelMapper = modelMapper;
+		this.parcelamentoAssembler = parcelamentoAssembler;
 	}
 	
 	@GetMapping
@@ -42,7 +43,7 @@ public class ParcelamentoController {
 	public ResponseEntity<ParcelamentoModel> buscar(@PathVariable Long parcelamentoId){
 		return parcelamentoRepositorio.findById(parcelamentoId)
 				.map(parcelamento -> {
-					ParcelamentoModel parcelamentoModel = modelMapper.map(parcelamento, ParcelamentoModel.class);
+					ParcelamentoModel parcelamentoModel = parcelamentoAssembler.toModel(parcelamento);
 					
 					return ResponseEntity.ok(parcelamentoModel);
 				})
@@ -51,7 +52,7 @@ public class ParcelamentoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Parcelamento cadastrar(@Valid @RequestBody Parcelamento parcelamento) {
-		return parcelamentoService.cadastrar(parcelamento);
+	public ParcelamentoModel cadastrar(@Valid @RequestBody Parcelamento parcelamento) {
+		return parcelamentoAssembler.toModel(parcelamentoService.cadastrar(parcelamento));
 	}
 }
