@@ -1,6 +1,5 @@
 package com.francosmonx.wspag.domain.service;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 import org.springframework.stereotype.Service;

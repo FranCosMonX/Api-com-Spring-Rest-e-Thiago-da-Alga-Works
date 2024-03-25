@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.francosmonx.wspag.api.model.ParcelamentoModel;
 import com.francosmonx.wspag.domain.model.Parcelamento;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
 import com.francosmonx.wspag.domain.service.ParcelamentoService;
@@ -35,9 +36,18 @@ public class ParcelamentoController {
 	}
 	
 	@GetMapping("/{parcelamentoId}")
-	public ResponseEntity<Parcelamento> buscar(@PathVariable Long parcelamentoId){
+	public ResponseEntity<ParcelamentoModel> buscar(@PathVariable Long parcelamentoId){
 		return parcelamentoRepositorio.findById(parcelamentoId)
-				.map(ResponseEntity :: ok)
+				.map(parcelamento -> {
+					ParcelamentoModel parcelamentoModel = new ParcelamentoModel();
+					parcelamentoModel.setId(parcelamentoId);
+					parcelamentoModel.setNomeCliente(parcelamento.getCliente().getNome());
+					parcelamentoModel.setDescricao(parcelamento.getDescricao());
+					parcelamentoModel.setValor_total(parcelamento.getValor_total());
+					parcelamentoModel.setQuantidade_parcelas(parcelamento.getQuantidade_parcelas());
+					parcelamentoModel.setDataCriacao(parcelamento.getDataCriacao());
+					return ResponseEntity.ok(parcelamentoModel);
+				})
 				.orElse(ResponseEntity.notFound().build());
 	}
 	

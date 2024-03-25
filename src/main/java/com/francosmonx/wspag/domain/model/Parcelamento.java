@@ -1,7 +1,6 @@
 package com.francosmonx.wspag.domain.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
@@ -28,7 +27,7 @@ public class Parcelamento {
 	private Long id;
 	
 	@Valid
-	@ConvertGroup(from = Default.class, to = ValidationGroups.clienteID.class) //informando que só quero que valide o que esta escrito como ValidationGroups.clienteID
+	@ConvertGroup(from = Default.class, to = ValidationGroups.clienteID.class)
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
@@ -43,7 +42,7 @@ public class Parcelamento {
 	@Positive
 	@Max(12)
 	private Integer quantidade_parcelas;
-	private OffsetDateTime dataCriacao;//adicionando o offset no formato de data/hora
+	private OffsetDateTime dataCriacao;
 	
 	public Long getId() {
 		return id;
