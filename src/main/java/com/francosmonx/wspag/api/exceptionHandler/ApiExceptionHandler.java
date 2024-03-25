@@ -3,6 +3,8 @@ package com.francosmonx.wspag.api.exceptionHandler;
 import java.net.URI;
 import java.util.stream.Collectors;
 
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -18,8 +20,13 @@ import com.francosmonx.wspag.domain.exception.NegocioException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
-
-	//costumizando informações
+	
+	private MessageSource messageSource;
+	
+	public ApiExceptionHandler(MessageSource messageSource) {
+		this.messageSource = messageSource;
+	}
+	
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
@@ -28,11 +35,10 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		problemDetail.setTitle("Um ou mais campos estao invalidos.");
 		problemDetail.setType(URI.create("https://francosmonx.com/erros/campos-invalidos"));
 		
-		var fields = ex.getBindingResult().getAllErrors() //pega todos os objetos de erro da exceção definindo cada campo com algum erro
-			.stream()//usando o stream para navegar pela lista
-			//toMap precisa ter duas funções, para retornar o nome da chave do mapa e outra para o valor do mapa
+		var fields = ex.getBindingResult().getAllErrors() 
+			.stream()
 			.collect(Collectors.toMap(error -> ((FieldError)error).getField(), 
-					error -> error.getDefaultMessage()));
+					error -> messageSource.getMessage(error,LocaleContextHolder.getLocale()))); //passa o erro e o local de onde esta sendo executado a aplicação
 		
 		problemDetail.setProperty("Fields", fields);
 		
