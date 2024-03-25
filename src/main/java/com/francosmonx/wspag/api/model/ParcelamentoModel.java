@@ -10,23 +10,18 @@ import java.time.OffsetDateTime;
 public class ParcelamentoModel {
 	private Long id;
 	
-	private String nomeCliente;
+	private ClienteResumoModel cliente;
 	
 	private String descricao;
 	private BigDecimal valor_total;
 	private Integer quantidade_parcelas;
 	private OffsetDateTime dataCriacao;
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getNomeCliente() {
-		return nomeCliente;
-	}
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
 	}
 	public String getDescricao() {
 		return descricao;
@@ -51,6 +46,12 @@ public class ParcelamentoModel {
 	}
 	public void setDataCriacao(OffsetDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	public ClienteResumoModel getCliente() {
+		return cliente;
+	}
+	public void setCliente(ClienteResumoModel cliente) {
+		this.cliente = cliente;
 	}
 	
 	
