@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.francosmonx.wspag.domain.exception.NegocioException;
 import com.francosmonx.wspag.domain.model.Cliente;
 import com.francosmonx.wspag.domain.repository.ClienteRepository;
 import com.francosmonx.wspag.domain.service.CadastroClienteService;
@@ -77,9 +75,4 @@ public class ClienteController {
 		return ResponseEntity.noContent().build();
 	}
 	
-	//capturar exceção e trata-la adequadamente
-	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<String> capturar(NegocioException e) {
-		return ResponseEntity.badRequest().body(e.getMessage());
-	}
 }
