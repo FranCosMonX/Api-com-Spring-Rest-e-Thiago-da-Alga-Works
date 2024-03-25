@@ -3,6 +3,7 @@ package com.francosmonx.wspag.api.exceptionHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.francosmonx.wspag.domain.exception.NegocioException;
 
@@ -11,7 +12,7 @@ import com.francosmonx.wspag.domain.exception.NegocioException;
  */
 
 @RestControllerAdvice
-public class ApiExceptionHandler {
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 
 	@ExceptionHandler(NegocioException.class)
 	public ResponseEntity<String> capturar(NegocioException e) {

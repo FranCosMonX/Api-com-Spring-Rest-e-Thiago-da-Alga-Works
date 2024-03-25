@@ -19,3 +19,5 @@ e a extensão do arquivo deve ser "sql".
 - jakarta: (link)[https://jakarta.ee/learn/docs/jakartaee-tutorial/current/index.html]
 
 - Spring Data JPA: implementação de repositorios (classes) do jakarta;
+
+- RFC 7807: (link)[https://www.rfc-editor.org/rfc/rfc7807]
