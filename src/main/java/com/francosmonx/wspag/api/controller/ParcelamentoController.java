@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.francosmonx.wspag.api.assembler.ParcelamentoAssembler;
 import com.francosmonx.wspag.api.model.ParcelamentoModel;
+import com.francosmonx.wspag.api.model.input.ParcelamentoModelInput;
 import com.francosmonx.wspag.domain.model.Parcelamento;
 import com.francosmonx.wspag.domain.repository.ParcelamentoRepository;
 import com.francosmonx.wspag.domain.service.ParcelamentoService;
@@ -52,7 +53,9 @@ public class ParcelamentoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ParcelamentoModel cadastrar(@Valid @RequestBody Parcelamento parcelamento) {
-		return parcelamentoAssembler.toModel(parcelamentoService.cadastrar(parcelamento));
+	public ParcelamentoModel cadastrar(@Valid @RequestBody ParcelamentoModelInput parcelamentoInput) {
+		Parcelamento parcelamentoNovo = parcelamentoAssembler.toEntity(parcelamentoInput);
+		Parcelamento parcelamentoCadastrado = parcelamentoService.cadastrar(parcelamentoNovo);
+		return parcelamentoAssembler.toModel(parcelamentoCadastrado);
 	}
 }

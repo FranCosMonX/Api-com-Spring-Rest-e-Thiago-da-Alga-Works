@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.francosmonx.wspag.api.model.ParcelamentoModel;
+import com.francosmonx.wspag.api.model.input.ParcelamentoModelInput;
 import com.francosmonx.wspag.domain.model.Parcelamento;
 
 /**
@@ -27,5 +28,14 @@ public class ParcelamentoAssembler {
 		return parcelamentos.stream()
 				.map(p -> toModel(p))
 				.toList();
+	}
+	
+	/**
+	 * Converte parcelamentoInput em Parcelamento
+	 * @param parcelamentoInput
+	 * @return
+	 */
+	public Parcelamento toEntity(ParcelamentoModelInput parcelamentoInput) {
+		return modelMapper.map(parcelamentoInput, Parcelamento.class);
 	}
 }
