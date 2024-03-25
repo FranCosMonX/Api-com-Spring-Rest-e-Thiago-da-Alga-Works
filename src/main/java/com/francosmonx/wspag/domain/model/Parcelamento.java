@@ -2,6 +2,7 @@ package com.francosmonx.wspag.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 import com.francosmonx.wspag.domain.validation.ValidationGroups;
@@ -42,8 +43,7 @@ public class Parcelamento {
 	@Positive
 	@Max(12)
 	private Integer quantidade_parcelas;
-	private LocalDateTime dataCriacao;
-	
+	private OffsetDateTime dataCriacao;//adicionando o offset no formato de data/hora
 	
 	public Long getId() {
 		return id;
@@ -75,10 +75,10 @@ public class Parcelamento {
 	public void setQuantidade_parcelas(Integer quantidade_de_parcelas) {
 		this.quantidade_parcelas = quantidade_de_parcelas;
 	}
-	public LocalDateTime getDataCriacao() {
+	public OffsetDateTime getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(LocalDateTime dataCriacao) {
+	public void setDataCriacao(OffsetDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 	@Override

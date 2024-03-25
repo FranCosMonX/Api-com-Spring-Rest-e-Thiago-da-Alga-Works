@@ -1,6 +1,7 @@
 package com.francosmonx.wspag.domain.service;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +30,7 @@ public class ParcelamentoService {
 		Cliente cliente = clienteService.buscar(parcelamento.getCliente().getId());
 		
 		parcelamento.setCliente(cliente);
-		parcelamento.setDataCriacao(LocalDateTime.now());
+		parcelamento.setDataCriacao(OffsetDateTime.now());
 		return parcelamentoRepository.save(parcelamento);
 	}
 }
