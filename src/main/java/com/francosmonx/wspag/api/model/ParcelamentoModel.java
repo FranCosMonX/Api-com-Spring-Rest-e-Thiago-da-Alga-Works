@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 
 /**
- * modelo de representação de Parcelamento - modelar a API
+ * DTO
  */
 
 public class ParcelamentoModel {
