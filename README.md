@@ -3,7 +3,7 @@
 ## Requisitos
 
 - Conhecimento dos verbos HTTP
-- Conhecimento dos códigos HTTP: (link para estudar)[https://httpstatus.io/http-status-codes]
+- Conhecimento dos códigos HTTP: [link para estudar](https://httpstatus.io/http-status-codes)
 - Programação Orientada a Objetos.
 - Conhecimento em Java.
 - Conhecimentos básicos de Banco de Dados.
@@ -16,8 +16,8 @@ Os arquivos de migração nada mais são que as ações que serão feitas no ban
 tem que respeitar a sintaxe: V<001>__cria-tabela-cliente.sql >> o numero pode conter pontos, tem que haver dois under-lines
 e a extensão do arquivo deve ser "sql".
 
-- jakarta: (link)[https://jakarta.ee/learn/docs/jakartaee-tutorial/current/index.html]
+- jakarta: [link](https://jakarta.ee/learn/docs/jakartaee-tutorial/current/index.html)
 
 - Spring Data JPA: implementação de repositorios (classes) do jakarta;
 
-- RFC 7807: (link)[https://www.rfc-editor.org/rfc/rfc7807]
+- RFC 7807: [link](https://www.rfc-editor.org/rfc/rfc7807)
